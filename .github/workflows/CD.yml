@@ -1,0 +1,45 @@
+name: CD
+
+concurrency:
+  group: cd-${{ github.event.release.tag_name }}
+  cancel-in-progress: true
+  
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      VERSION: ${{ github.event.release.tag_name }}
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 11
+      
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          cache: "npm"
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Android
+        run: npm run android build
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: android
+          path: android/app/build/outputs/apk/release/app-release.apk
