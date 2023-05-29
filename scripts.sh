@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function start(){
-  npx watchman watch-del-all;
+  watchman watch-del-all;
   npx react-native start
 }
 
