@@ -28,9 +28,13 @@ function ios(){
 function build-ios(){
   cd ios;
   xcodebuild -workspace "MyApp.xcworkspace" \
-  -scheme "MyApp" -configuration Release \
-  -sdk iphoneos -derivedDataPath build  \
-  -allowProvisioningDeviceRegistration;
+    -scheme "MyApp" -configuration Release \
+    -sdk iphoneos -derivedDataPath build  \
+    -allowProvisioningDeviceRegistration;
+
+  xcodebuild -exportArchive -archivePath build/MyApp.xcarchive \
+    -exportOptionsPlist exportOptions.plist \
+    -exportPath build;
 }
 
 function build-android(){
