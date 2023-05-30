@@ -1,6 +1,6 @@
 {
   "name": "shoppbud-mobile",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "engines": {
     "node": ">=17.0.0",
     "npm": ">=8.0.0"

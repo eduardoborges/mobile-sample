@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/inhouse-market/mobile-sample/compare/1.1.1...1.1.2) (2023-05-30)
+
+
+### Bug Fixes
+
+* change runner to macos-12 ([e8a1769](https://github.com/inhouse-market/mobile-sample/commit/e8a1769b4edd033c4014e51778ffa1c13c6d404f))
+
 ## [1.1.1](https://github.com/inhouse-market/mobile-sample/compare/1.1.0...1.1.1) (2023-05-30)
 
 
