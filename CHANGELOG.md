@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/inhouse-market/mobile-sample/compare/1.1.0...1.1.1) (2023-05-30)
+
+
+### Bug Fixes
+
+* fix ios-build ([df9b5a9](https://github.com/inhouse-market/mobile-sample/commit/df9b5a9eefdc535d36ddc4e888f6ae5d8aab3793))
+
 # [1.1.0](https://github.com/inhouse-market/mobile-sample/compare/1.0.0...1.1.0) (2023-05-30)
 
 
