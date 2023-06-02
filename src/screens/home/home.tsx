@@ -14,9 +14,8 @@ export default function HomeScreen(props: Props) {
 
   return (
     <Container title="Home Page">
-      <Button onPress={() => setModal(true)}>Open Modal</Button>
       {Array.from({ length: 150 }).map((_, index) => (
-        <Typography.H1 key={index} entering={FadeInDown.easing(Easing.elastic()).duration(600).delay(index * 50)}>
+        <Typography.H1 entering={FadeInDown.easing(Easing.elastic()).duration(600).delay(index * 50)}>
           Home Screen
         </Typography.H1>
       ))}

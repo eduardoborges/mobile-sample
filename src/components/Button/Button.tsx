@@ -1,42 +1,52 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import {
   TouchableOpacity, TouchableOpacityProps, StyleSheet, Text,
 } from 'react-native';
 
-import s, { variants } from './Button.styles';
-
-type Props = React.PropsWithChildren<TouchableOpacityProps> & {
+export type ButtonProps = React.PropsWithChildren<TouchableOpacityProps> & {
   type?: 'primary' | 'secondary';
 };
 
-export function Button(props: Props) {
-  const {
-    children,
-    type = 'primary',
-    style = {},
-  } = props;
-
-  const touchableStyle = StyleSheet.flatten([
-    s.button,
-    variants.touchable[type],
-    style,
-  ]);
-
-  const textStyle = StyleSheet.flatten([
-    s.text,
-    variants.text[type],
-  ]);
+export function Button({ children, ...props }: ButtonProps) {
+  const s = useMemo(() => styles(props), [props]);
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.8}
-      style={touchableStyle}
-      {...props}
-    >
-      <Text style={textStyle}>
+    <TouchableOpacity activeOpacity={0.8} style={s.container} {...props}>
+      <Text style={s.text}>
         {children}
       </Text>
     </TouchableOpacity>
   );
 }
+
+const styles = (p: ButtonProps) => StyleSheet.create({
+  container: {
+    borderRadius: 6,
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...(p.type === 'primary') && {
+      backgroundColor: '#000',
+      color: '#fff',
+    },
+    ...(p.type === 'secondary') && {
+      backgroundColor: '#fff',
+      borderColor: '#000',
+      borderWidth: 1,
+      color: '#000',
+    },
+  },
+  text: {
+    ...(p.type === 'primary') && {
+      color: '#fff',
+    },
+
+    ...(p.type === 'secondary') && {
+      color: '#000',
+    },
+    color: 'inherit',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});

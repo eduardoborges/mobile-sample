@@ -1,7 +1,6 @@
 #!/bin/bash
 
 function start(){
-  watchman watch-del-all;
   npx react-native start
 }
 
@@ -28,8 +27,11 @@ function ios(){
 function build-ios(){
   cd ios;
   xcodebuild -workspace "MyApp.xcworkspace" \
-    -scheme "MyApp" -configuration Release \
-    -sdk iphoneos -derivedDataPath build  \
+    -scheme "MyApp" \
+    -configuration Release \
+    -sdk iphoneos \
+    -derivedDataPath ./build \
+    -allowProvisioningUpdates \
     -allowProvisioningDeviceRegistration;
 
   xcodebuild -exportArchive -archivePath build/MyApp.xcarchive \

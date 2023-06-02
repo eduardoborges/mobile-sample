@@ -1,37 +1,27 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
-  Modal as NativeModal, StyleSheet, TouchableOpacity, View,
+  Modal as NativeModal,
+  StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import { X } from 'lucide-react-native';
-import { Container } from '../Container/Container';
 
-type Props = React.PropsWithChildren<{
+export type ModalProps = React.PropsWithChildren<{
   visible?: boolean;
   handleDismiss?: () => any;
   onDismiss?: () => any;
   onShow?: () => any;
 }>;
 
-const s = StyleSheet.create({
-  close: {
-    position: 'absolute',
-    top: 20,
-    right: 20,
-    backgroundColor: '#f8f8f8',
-    borderRadius: 50,
-    zIndex: 4,
-    padding: 5,
-  },
-});
-
-export function Modal(props: Props) {
+export function Modal({ children, ...props }: ModalProps) {
   const {
-    children,
     visible = false,
-    onDismiss = () => {},
-    onShow = () => {},
-    handleDismiss = () => {},
+    onDismiss = () => { },
+    onShow = () => { },
+    handleDismiss = () => { },
   } = props;
+
+  const s = useMemo(() => createStyles(props), [props]);
 
   return (
     <NativeModal
@@ -49,3 +39,15 @@ export function Modal(props: Props) {
     </NativeModal>
   );
 }
+
+const createStyles = (p: ModalProps) => StyleSheet.create({
+  close: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    backgroundColor: '#f8f8f8',
+    borderRadius: 50,
+    zIndex: 4,
+    padding: 5,
+  },
+});

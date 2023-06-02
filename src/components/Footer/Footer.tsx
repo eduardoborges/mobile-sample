@@ -1,8 +1,6 @@
-/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
-import { hasNotch } from '~/utils/device';
 
 type Props = React.PropsWithChildren<{
 
