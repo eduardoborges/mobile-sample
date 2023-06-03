@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
@@ -21,7 +22,7 @@ export default function RootRoutes() {
 
   return (
     <NavigationContainer>
-      <RootBottomTab.Navigator tabBar={BottomTabBar}>
+      <RootBottomTab.Navigator tabBar={(p) => <BottomTabBar {...p} />}>
         <RootBottomTab.Group>
           <RootBottomTab.Screen name={routes.DISCOVER.id} component={DiscoverRouterStack} />
           <RootBottomTab.Screen name={routes.FAVORITES.id} component={FavoritesRouterStack} />
