@@ -1,6 +1,8 @@
 export * from './Button';
 export * from './Tab';
-// Grouped Components
-export * from './Container/Container';
+export * from './Columns';
+export * from './Container';
 export * from './Modal/Modal';
+
+// Grouped Components
 export * as Typography from './Typography';
