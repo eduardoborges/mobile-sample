@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/inhouse-market/mobile-sample/compare/1.3.0...1.4.0) (2023-06-03)
+
+
+### Features
+
+* **utils:** Add date and range utilities ([1c7c96f](https://github.com/inhouse-market/mobile-sample/commit/1c7c96f26f9e90878f65b8abc20c6c67e8dc1037))
+
 # [1.3.0](https://github.com/inhouse-market/mobile-sample/compare/1.2.0...1.3.0) (2023-06-03)
 
 
