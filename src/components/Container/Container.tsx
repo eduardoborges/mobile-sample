@@ -62,6 +62,7 @@ export function Container({ children, ...props }: ContainerProps) {
         >
           <View style={s.scrollGap} />
           {children}
+          <View style={{ height: s.scrollGap.height * 0.8 }} />
         </A.ScrollView>
       </A.View>
 
