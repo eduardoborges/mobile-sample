@@ -1,3 +1,14 @@
+# [1.2.0](https://github.com/inhouse-market/mobile-sample/compare/1.1.2...1.2.0) (2023-06-03)
+
+
+### Features
+
+* Add BottomTabBar component ([9ed1154](https://github.com/inhouse-market/mobile-sample/commit/9ed11546217604a38feff12aa8bca8c6a564edca))
+* Add Columns and Column components ([dfea91d](https://github.com/inhouse-market/mobile-sample/commit/dfea91d98ea68b0b52d89892ba934b71e6601048))
+* add Paragraph component ([673067e](https://github.com/inhouse-market/mobile-sample/commit/673067eb4b2b14bc3f33aa35abd40cd44dc553e5))
+* **components:** Add Columns component and refactor Container component ([e94d8a3](https://github.com/inhouse-market/mobile-sample/commit/e94d8a398fcd2f933432f15e3efe4e440c189cb1))
+* implements screen router logic ([0cb4150](https://github.com/inhouse-market/mobile-sample/commit/0cb41503739f3d42732916be7ed6a94c3050aae6))
+
 ## [1.1.2](https://github.com/inhouse-market/mobile-sample/compare/1.1.1...1.1.2) (2023-05-30)
 
 
