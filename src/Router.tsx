@@ -1,14 +1,18 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Button, Platform, Text } from 'react-native';
-import home from '~/screens/home/home';
-import signin from './screens/signin/signin';
-import signup from './screens/signup/signup';
+import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import Loader from './screens/loader/loader.page';
-import { BottomTab, Stack, routes } from './routes';
+import { RootBottomTab, DiscoverStack, routes } from './routes';
 import { useAuth } from '~/store';
+import BottomTabBar from './BottomTabBar';
 
-export default function Routes() {
+// screens
+import DiscoverScreen from './screens/discover/DiscoverScreen';
+import FavoritesScreen from './screens/favorites/FavoritesScreen';
+import OrdersScreen from './screens/orders/OrdersScreen';
+import AccountScreen from './screens/account/AccountScreen';
+
+export default function RootRoutes() {
   const { isLoading, data } = useAuth();
 
   if (isLoading) {
@@ -17,20 +21,58 @@ export default function Routes() {
 
   return (
     <NavigationContainer>
-      {!data ? (
-        <Stack.Navigator initialRouteName={routes.AUTH.SIGNIN}>
-          <Stack.Group>
-            <Stack.Screen name={routes.AUTH.SIGNIN} component={signin} />
-            {/* <Stack.Screen name={routes.AUTH.SIGNUP} component={signup} /> */}
-          </Stack.Group>
-        </Stack.Navigator>
-      ) : (
-        <BottomTab.Navigator>
-          <BottomTab.Group>
-            <BottomTab.Screen name={routes.HOME} component={home} />
-          </BottomTab.Group>
-        </BottomTab.Navigator>
-      )}
+      <RootBottomTab.Navigator tabBar={BottomTabBar}>
+        <RootBottomTab.Group>
+          <RootBottomTab.Screen name={routes.DISCOVER.id} component={DiscoverRouterStack} />
+          <RootBottomTab.Screen name={routes.FAVORITES.id} component={FavoritesRouterStack} />
+          <RootBottomTab.Screen name={routes.ORDERS.id} component={OrdersRouterStack} />
+          <RootBottomTab.Screen name={routes.ACCOUNT.id} component={AccountRouterStack} />
+        </RootBottomTab.Group>
+      </RootBottomTab.Navigator>
     </NavigationContainer>
+  );
+}
+
+function DiscoverRouterStack() {
+  const screenOptions : NativeStackNavigationOptions = {
+    headerShown: false,
+  };
+  return (
+    <DiscoverStack.Navigator screenOptions={screenOptions}>
+      <DiscoverStack.Screen name={routes.DISCOVER.id} component={DiscoverScreen} />
+    </DiscoverStack.Navigator>
+  );
+}
+
+function FavoritesRouterStack() {
+  const screenOptions : NativeStackNavigationOptions = {
+    headerShown: false,
+  };
+  return (
+    <DiscoverStack.Navigator screenOptions={screenOptions}>
+      <DiscoverStack.Screen name={routes.FAVORITES.id} component={FavoritesScreen} />
+    </DiscoverStack.Navigator>
+  );
+}
+
+function OrdersRouterStack() {
+  const screenOptions : NativeStackNavigationOptions = {
+    headerShown: false,
+  };
+  return (
+    <DiscoverStack.Navigator screenOptions={screenOptions}>
+      <DiscoverStack.Screen name={routes.ORDERS.id} component={OrdersScreen} />
+    </DiscoverStack.Navigator>
+  );
+}
+
+function AccountRouterStack() {
+  const screenOptions : NativeStackNavigationOptions = {
+    headerShown: false,
+  };
+  return (
+    <DiscoverStack.Navigator screenOptions={screenOptions}>
+      <DiscoverStack.Screen name={routes.ACCOUNT.id} component={AccountScreen} />
+    </DiscoverStack.Navigator>
   );
 }
