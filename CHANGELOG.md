@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/inhouse-market/mobile-sample/compare/1.2.0...1.3.0) (2023-06-03)
+
+
+### Features
+
+* add dayjs library for date formatting ([a9bd15f](https://github.com/inhouse-market/mobile-sample/commit/a9bd15f0b9f3645a5cf5b50d92224819b110c1fe))
+
 # [1.2.0](https://github.com/inhouse-market/mobile-sample/compare/1.1.2...1.2.0) (2023-06-03)
 
 
