@@ -4,12 +4,13 @@ import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import {
   StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
+import { hasNotch } from 'react-native-device-info';
 import { routes } from './routes';
 
 export default function BottomTabBar({ navigation, state, descriptors }: BottomTabBarProps) {
   const s = getStyles();
   return (
-    <BlurView style={s.container} blurType="light">
+    <BlurView style={s.innerContainer} blurType="light">
       <View style={s.line} />
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
@@ -63,46 +64,54 @@ export default function BottomTabBar({ navigation, state, descriptors }: BottomT
   );
 }
 
-const getStyles = () => StyleSheet.create({
-  container: {
-    flex: 1,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingBottom: 15,
-    paddingHorizontal: 10,
-    borderTopWidth: 2,
-    borderTopColor: '#000',
-  },
-  line: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 0.5,
-    backgroundColor: '#e0e0e0',
-  },
-  item: {
-    flex: 1,
-    height: 65,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  icon: {
-    color: '#000',
-  },
-  text: {
-    marginTop: 5,
-    textTransform: 'capitalize',
-    color: '#000',
-    opacity: 0.8,
-    fontSize: 12,
-  },
-  textActive: {
-    opacity: 1,
-  },
-});
+const getStyles = () => {
+  const itemHeight = 65;
+  const paddingBottom = hasNotch() ? 20 : 0;
+
+  return StyleSheet.create({
+    gap: {
+      height: itemHeight + paddingBottom,
+      position: 'relative',
+    },
+    innerContainer: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      paddingBottom,
+      paddingHorizontal: 10,
+      borderTopWidth: 2,
+      borderTopColor: '#000',
+    },
+    line: {
+      position: 'absolute',
+      top: -2,
+      left: 0,
+      right: 0,
+      height: 0.5,
+      backgroundColor: '#e0e0e0',
+    },
+    item: {
+      flex: 1,
+      height: itemHeight,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    icon: {
+      color: '#000',
+    },
+    text: {
+      marginTop: 5,
+      textTransform: 'capitalize',
+      color: '#000',
+      opacity: 0.8,
+      fontSize: 12,
+    },
+    textActive: {
+      opacity: 1,
+    },
+  });
+};
