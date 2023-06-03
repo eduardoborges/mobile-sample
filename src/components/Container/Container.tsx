@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   StyleSheet, View, Dimensions,
 } from 'react-native';
@@ -17,7 +17,8 @@ type ContainerProps = React.PropsWithChildren<{
 
 export function Container({ children, ...props }: ContainerProps) {
   const { title } = props;
-  const s = styles(props);
+
+  const s = useMemo(() => styles(props), [props]);
 
   const scroll = useSharedValue(0);
 
