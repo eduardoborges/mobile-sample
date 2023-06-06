@@ -1,5 +1,6 @@
 import * as colors from './colors';
 
+export * from './constants';
 export const theme = {
   colors,
   backgrunds: {
@@ -11,10 +12,19 @@ export const theme = {
     primary: 'Inter',
     secondary: 'Inter',
   },
+  headings: {
+    1: 32,
+    2: 24,
+    3: 18,
+    4: 16,
+    5: 14,
+  } as const,
   fontSizes: {
-    small: 12,
-    medium: 14,
-    large: 16,
+    s: 12,
+    m: 14,
+    l: 16,
+    xl: 18,
+    xxl: 20,
   },
   fontWeights: {
     light: 300,

@@ -1,1 +1,3 @@
-export const blue = '#0070f3';
+export const primary = '#007bff';
+
+export const success = 'hsl(153, 53%, 45%)';
