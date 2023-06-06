@@ -7,7 +7,7 @@ function start(){
 function android(){
   if [ $1 == "build" ]; then
     echo "Building Android...";
-    build-android;
+    build-android $2;
   else
     echo "Running Android...";
     npx react-native run-android;
@@ -40,7 +40,14 @@ function build-ios(){
 }
 
 function build-android(){
-  cd android && ./gradlew assembleRelease;
+  cd android;
+  if [[ $1 == "apk" ]]; then
+    echo "Building APK...";
+    ./gradlew assembleRelease;
+  else
+    echo "Building Bundle AAB...";
+    ./gradlew bundleRelease;
+  fi
 }
 
 function lint(){
