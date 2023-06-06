@@ -42,6 +42,7 @@
     "@babel/plugin-proposal-export-namespace-from": "7.18.9",
     "@babel/preset-env": "7.22.4",
     "@babel/runtime": "7.22.3",
+    "@faker-js/faker": "^8.0.2",
     "@jest/globals": "^29.5.0",
     "@react-native/metro-config": "0.72.6",
     "@semantic-release/changelog": "^6.0.3",
