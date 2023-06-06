@@ -6,15 +6,16 @@ import {
 } from 'react-native';
 import { hasNotch } from 'react-native-device-info';
 import { routes } from './routes';
+import { blurType, theme } from './theme';
 
 export default function BottomTabBar({ navigation, state, descriptors }: BottomTabBarProps) {
   const s = getStyles();
   return (
-    <BlurView style={s.innerContainer} blurType="light">
+    <BlurView style={s.innerContainer} blurType={blurType}>
       <View style={s.line} />
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
-        const { name, icon, id } = routes[route.name as keyof typeof routes];
+        const { name, id, icon: Icon } = routes[route.name as keyof typeof routes];
         const isFocused = state.index === index;
 
         const onPress = () => {
@@ -38,8 +39,6 @@ export default function BottomTabBar({ navigation, state, descriptors }: BottomT
           });
         };
 
-        const Icon = icon;
-
         return (
           <TouchableOpacity
             key={id}
@@ -51,12 +50,18 @@ export default function BottomTabBar({ navigation, state, descriptors }: BottomT
             onLongPress={onLongPress}
             style={s.item}
           >
-            <Icon size={24} color={s.icon.color} {...(isFocused && { fill: s.icon.color })} />
-
+            {Icon && (
+              <Icon
+                size={24}
+                color={s.icon.color}
+                {...(isFocused && {
+                  color: theme.colors.primary,
+                })}
+              />
+            )}
             <Text style={[s.text, isFocused && s.textActive]}>
               {name}
             </Text>
-
           </TouchableOpacity>
         );
       })}
@@ -112,6 +117,7 @@ const getStyles = () => {
     },
     textActive: {
       opacity: 1,
+      color: theme.colors.primary,
     },
   });
 };
