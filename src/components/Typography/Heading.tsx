@@ -1,12 +1,14 @@
 import React, { useMemo } from 'react';
 import A from 'react-native-reanimated';
 import { StyleSheet, Text } from 'react-native';
+import { theme } from '~/theme';
 
-export interface TitleProps extends React.ComponentProps<typeof A.Text> {
-  children?: React.ReactNode;
-}
+export type TitleProps = React.PropsWithChildren<{
+  size?: keyof typeof theme.headings;
+  color?: string;
+}>;
 
-export function H1({ children, ...props }: TitleProps) {
+export function Heading({ children, ...props }: TitleProps) {
   const s = useMemo(() => styles(props), [props]);
 
   return (
@@ -16,10 +18,15 @@ export function H1({ children, ...props }: TitleProps) {
   );
 }
 
-const styles = (p: TitleProps) => StyleSheet.create({
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-});
+const styles = (p: TitleProps) => {
+  const { size = 1 } = p;
+
+  return StyleSheet.create({
+    title: {
+      fontFamily: theme.fonts.primary,
+      fontSize: theme.headings[size],
+      fontWeight: '700',
+      color: p.color || '#333',
+    },
+  });
+};
