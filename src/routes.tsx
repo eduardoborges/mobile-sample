@@ -9,28 +9,54 @@ import {
 
 // routes names
 export const routes = {
+  // bottom tab stacks
+  DISCOVER_STACK: {
+    id: 'DISCOVER_STACK',
+    name: 'Explorar',
+    icon: Map,
+    params: undefined,
+  },
+  FAVORITES_STACK: {
+    id: 'FAVORITES_STACK',
+    name: 'Favoritos',
+    params: undefined,
+    icon: Heart,
+  },
+  ORDERS_STACK: {
+    id: 'ORDERS_STACK',
+    name: 'Pedidos',
+    icon: ShoppingCart,
+    params: undefined,
+  },
+  ACCOUNT_STACK: {
+    id: 'ACCOUNT_STACK',
+    name: 'Conta',
+    icon: User,
+    params: undefined,
+  },
+  // screens
   DISCOVER: {
     id: 'DISCOVER',
     name: 'Explorar',
-    icon: Map,
+    icon: null,
     params: undefined,
   },
   FAVORITES: {
     id: 'FAVORITES',
     name: 'Favoritos',
-    icon: Heart,
     params: undefined,
+    icon: null,
   },
   ORDERS: {
     id: 'ORDERS',
     name: 'Pedidos',
-    icon: ShoppingCart,
+    icon: null,
     params: undefined,
   },
   ACCOUNT: {
     id: 'ACCOUNT',
     name: 'Minha Conta',
-    icon: User,
+    icon: null,
     params: undefined,
   },
 } as const;
