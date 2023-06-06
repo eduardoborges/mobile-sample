@@ -1,3 +1,18 @@
+# [1.5.0](https://github.com/inhouse-market/mobile-sample/compare/1.4.0...1.5.0) (2023-06-06)
+
+
+### Features
+
+* add @faker-js/faker dependency ([ad9d3b4](https://github.com/inhouse-market/mobile-sample/commit/ad9d3b42e2d91235ce7ad652a3c7f34621e11714))
+* Add Card component and update Modal and Typography in index.ts ([2e3923a](https://github.com/inhouse-market/mobile-sample/commit/2e3923a99d0fdc297edee7f2c690570f6cb387cd))
+* Add currency formatting utility function ([c7f042b](https://github.com/inhouse-market/mobile-sample/commit/c7f042b62acf63136c0b35ea947649cc2cca43e6))
+* Add store list and product cards to Discover screen ([6aa7ca9](https://github.com/inhouse-market/mobile-sample/commit/6aa7ca940e68b51bf1bf64b59591f83c9f3c135f))
+
+
+### Performance Improvements
+
+* **queries:** decrease useAuth delay to 1s ([ca60d5f](https://github.com/inhouse-market/mobile-sample/commit/ca60d5ff3893496e87838018fa20d3937503cb0d))
+
 # [1.4.0](https://github.com/inhouse-market/mobile-sample/compare/1.3.0...1.4.0) (2023-06-03)
 
 
