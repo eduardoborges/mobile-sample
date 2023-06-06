@@ -2,7 +2,8 @@ export * from './Button';
 export * from './Tab';
 export * from './Columns';
 export * from './Container';
-export * from './Modal/Modal';
+export * from './Modal';
+export * from './Card';
 
 // Grouped Components
-export * as Typography from './Typography';
+export * from './Typography';
