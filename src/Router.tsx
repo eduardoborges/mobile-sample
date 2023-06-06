@@ -22,12 +22,12 @@ export default function RootRoutes() {
 
   return (
     <NavigationContainer>
-      <RootBottomTab.Navigator tabBar={(p) => <BottomTabBar {...p} />}>
+      <RootBottomTab.Navigator tabBar={BottomTabBar}>
         <RootBottomTab.Group>
-          <RootBottomTab.Screen name={routes.DISCOVER.id} component={DiscoverRouterStack} />
-          <RootBottomTab.Screen name={routes.FAVORITES.id} component={FavoritesRouterStack} />
-          <RootBottomTab.Screen name={routes.ORDERS.id} component={OrdersRouterStack} />
-          <RootBottomTab.Screen name={routes.ACCOUNT.id} component={AccountRouterStack} />
+          <RootBottomTab.Screen name={routes.DISCOVER_STACK.id} component={DiscoverRouterStack} />
+          <RootBottomTab.Screen name={routes.FAVORITES_STACK.id} component={FavoritesRouterStack} />
+          <RootBottomTab.Screen name={routes.ORDERS_STACK.id} component={OrdersRouterStack} />
+          <RootBottomTab.Screen name={routes.ACCOUNT_STACK.id} component={AccountRouterStack} />
         </RootBottomTab.Group>
       </RootBottomTab.Navigator>
     </NavigationContainer>
