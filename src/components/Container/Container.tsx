@@ -1,14 +1,15 @@
 import React, { useMemo } from 'react';
-import {
-  StyleSheet, View, Dimensions,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import A, {
   Extrapolate, interpolate,
   useAnimatedScrollHandler,
   useAnimatedStyle, useSharedValue,
 } from 'react-native-reanimated';
 import { BlurView } from '@react-native-community/blur';
-import { hasNotch } from '~/utils/device';
+import { useNavigation } from '@react-navigation/native';
+import { Bluetooth } from 'lucide-react-native';
+import { getNotchHeight, hasNotch } from '~/utils/device';
+import { blurType } from '~/theme';
 
 type ContainerProps = React.PropsWithChildren<{
   title?: string;
@@ -16,22 +17,22 @@ type ContainerProps = React.PropsWithChildren<{
 }>;
 
 export function Container({ children, ...props }: ContainerProps) {
+  const navigation = useNavigation();
   const { title } = props;
 
   const s = useMemo(() => styles(props), [props]);
 
   const scroll = useSharedValue(0);
 
+  const TRANSITION_RATIO = 100;
+  const MIN_FONT_SIZE = 18;
+  const MAX_FONT_SIZE = 32;
+
   const onScroll = useAnimatedScrollHandler({
     onScroll: (e) => {
       scroll.value = e.contentOffset.y;
     },
   });
-
-  const deviceWidth = Dimensions.get('window').width;
-  const TRANSITION_RATIO = 100;
-  const MIN_FONT_SIZE = 16;
-  const MAX_FONT_SIZE = 32;
 
   const titleStyles = useAnimatedStyle(() => ({
     fontSize: interpolate(
@@ -40,16 +41,15 @@ export function Container({ children, ...props }: ContainerProps) {
       [MAX_FONT_SIZE, MIN_FONT_SIZE],
       Extrapolate.CLAMP,
     ),
-    transform: [
-      {
-        translateX: interpolate(
-          scroll.value,
-          [0, TRANSITION_RATIO],
-          [0, deviceWidth / 2.5],
-          Extrapolate.CLAMP,
-        ),
-      },
-    ],
+  }));
+
+  const borderStyles = useAnimatedStyle(() => ({
+    opacity: interpolate(
+      scroll.value,
+      [0, TRANSITION_RATIO],
+      [0, 1],
+      Extrapolate.CLAMP,
+    ),
   }));
 
   return (
@@ -67,22 +67,24 @@ export function Container({ children, ...props }: ContainerProps) {
       </A.View>
 
       {/* For blur works must be in the end, i dont know why */}
-      <BlurView blurType="light" style={s.headerContainer}>
+      <BlurView blurType={blurType} style={s.headerContainer}>
         <View style={s.headerGap} />
         {title && (
           <View style={s.titleContainer}>
             <A.Text style={[s.title, titleStyles]}>
+              {navigation.canGoBack() ? '👈 ' : ''}
               {title}
             </A.Text>
           </View>
         )}
+        <A.View style={[s.borderBottom, borderStyles]} />
       </BlurView>
     </>
   );
 }
 
 const styles = (p: ContainerProps) => {
-  const NOTCH_SIZE = hasNotch() ? 50 : 15;
+  const NOTCH_SIZE = getNotchHeight();
 
   const calcScrollGapHeight = () => {
     if (p.title) return NOTCH_SIZE + 70;
@@ -98,6 +100,7 @@ const styles = (p: ContainerProps) => {
       justifyContent: 'center',
       width: '100%',
       zIndex: 1,
+      backgroundColor: '#fff',
     },
     scroll: {
       flex: 1,
@@ -105,7 +108,8 @@ const styles = (p: ContainerProps) => {
       paddingHorizontal: 20,
     },
     scrollGap: {
-      height: calcScrollGapHeight(),
+      height: NOTCH_SIZE + 50,
+      zIndex: 10,
     },
     headerContainer: {
       alignItems: 'flex-start',
@@ -114,6 +118,8 @@ const styles = (p: ContainerProps) => {
       position: 'absolute',
       top: 0,
       zIndex: 3,
+      // borderBottomColor: '#000',
+      borderBottomWidth: 1,
     },
     titleContainer: {
       // backgroundColor: 'red',
@@ -122,8 +128,16 @@ const styles = (p: ContainerProps) => {
       paddingHorizontal: 20,
       paddingVertical: 15,
     },
+    borderBottom: {
+      width: '100%',
+      height: 0.5,
+      backgroundColor: '#ddd',
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+    },
     headerGap: {
-      height: hasNotch() ? 50 : 15,
+      height: hasNotch() ? NOTCH_SIZE - 15 : 0,
       display: p.gapless ? 'none' : 'flex',
     },
     title: {
