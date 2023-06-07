@@ -41,12 +41,12 @@ function build-ios(){
 
 function build-android(){
   cd android;
-  if [[ $1 == "apk" ]]; then
-    echo "Building APK...";
-    ./gradlew assembleRelease;
-  else
+  if [[ $1 == "aab" ]]; then
     echo "Building Bundle AAB...";
     ./gradlew bundleRelease;
+  else
+    echo "Building APK...";
+    ./gradlew assembleRelease;
   fi
 }
 
