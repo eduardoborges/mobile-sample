@@ -1,5 +1,4 @@
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
-const { cpus } = require('os');
 
 /**
  * Metro configuration
@@ -8,7 +7,6 @@ const { cpus } = require('os');
  * @type {import('metro-config').MetroConfig}
  */
 const config = {
-  maxWorkers: cpus().length - 1,
 };
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
