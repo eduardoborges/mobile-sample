@@ -105,7 +105,6 @@ const styles = (p: ContainerProps) => {
     scroll: {
       flex: 1,
       width: '100%',
-      paddingHorizontal: 20,
     },
     scrollGap: {
       height: NOTCH_SIZE + 50,

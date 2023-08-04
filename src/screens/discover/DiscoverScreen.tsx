@@ -1,6 +1,9 @@
 import React from 'react';
-import { FlatList, Image, ScrollView } from 'react-native';
+import {
+  Dimensions, FlatList, Image, ScrollView, View,
+} from 'react-native';
 import { faker } from '@faker-js/faker';
+import { FlashList } from '@shopify/flash-list';
 import {
   Container, Column, Columns, Card, Heading, P,
 } from '~/components';
@@ -8,40 +11,45 @@ import { formatBRL, range } from '~/utils';
 import { theme } from '~/theme';
 
 export default function DiscoverScreen() {
+  const width = Dimensions.get('window').width - 50;
 
   return (
     <Container title="Olá">
       <Heading size={2}>Lojas Próximas</Heading>
+      <View style={{ marginHorizontal: 10 }}>
 
-      <ScrollView horizontal snapToInterval={250}>
-        <Columns>
-          {range(1, 20).map((item) => (
-            <Column m={5}>
-              <Card>
-                <Image
-                  source={{
-                    uri: `https://picsum.photos/500/500/${item}`,
-                  }}
-                  style={{
-                    borderRadius: 10,
-                    width: 300,
-                    height: 400,
-                    resizeMode: 'cover',
-                  }}
-                />
-              </Card>
-            </Column>
-          ))}
-        </Columns>
-      </ScrollView>
+        <ScrollView horizontal snapToAlignment="start" snapToInterval={width - 5} decelerationRate="fast">
+          <Columns>
+            {range(1, 20).map((item) => (
+              <Column m={[0, 5]} key={item}>
+                <Card>
+                  <Image
+                    source={{
+                      uri: 'https://picsum.photos/500/500',
+                    }}
+                    style={{
+                      borderRadius: 10,
+                      width: width - 10,
+                      height: 400,
+                      resizeMode: 'cover',
+                    }}
+                  />
+                </Card>
+              </Column>
+            ))}
+          </Columns>
+        </ScrollView>
+      </View>
 
       {/*  */}
       <Columns multiline>
-        <FlatList
+        <FlashList
           numColumns={2}
+          estimatedItemSize={200}
           data={range(1, 200)}
+          keyExtractor={(item) => item.toString()}
           renderItem={({ item }) => (
-            <Column width="50%" p={5} key={item}>
+            <Column width="100%" p={5} key={item}>
               <Card>
                 <Image
                   source={{
