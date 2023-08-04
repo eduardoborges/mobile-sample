@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/inhouse-market/mobile-sample/compare/1.5.0...1.5.1) (2023-08-04)
+
+
+### Bug Fixes
+
+* **android:** set kotlin version ([a089480](https://github.com/inhouse-market/mobile-sample/commit/a089480f92686bc42b781eb9205f30d00c69df90))
+
 # [1.5.0](https://github.com/inhouse-market/mobile-sample/compare/1.4.0...1.5.0) (2023-06-06)
 
 
