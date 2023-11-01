@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc",
   "extends":[
     "airbnb",
     "airbnb-typescript"
@@ -7,14 +8,19 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    // general
     "max-len": ["error", { "code": 130 }],
+    "no-restricted-exports": "off",
+    // react
     "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/no-unused-prop-types": "off",
+    // typescript
     "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    // import
     "import/prefer-default-export": "off",
     "import/extensions": "off",
-    "import/no-extraneous-dependencies": "off",
-    "react/require-default-props": "off",
-    "@typescript-eslint/no-use-before-define": "off",
-    "react/no-unused-prop-types": "off"
+    "import/no-extraneous-dependencies": "off"
   }
 }

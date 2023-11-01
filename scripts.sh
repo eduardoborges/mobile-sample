@@ -1,42 +1,61 @@
 #!/bin/bash
 
-function start(){
-  npx react-native start
-}
-
+# Android Stuff
 function android(){
   if [ $1 == "build" ]; then
-    echo "Building Android...";
+    echo "🤖 Building Android...";
     build-android $2;
   else
-    echo "Running Android...";
+    echo "🤖 Running Android...";
     npx react-native run-android;
   fi
 }
 
-function ios(){
-  if [[ $1 == "build" ]]; then
-    echo "Building iOS...";
-    build-ios;
+function build-android(){
+  cd android;
+  if [[ $1 == "aab" ]]; then
+    echo "📦 Building AAB...";
+    ./gradlew bundleRelease;
   else
-    echo "Running iOS...";
-    npx react-native run-ios;
+    echo "📦 Building APK...";
+    ./gradlew assembleRelease;
   fi
 }
 
-function build-ios(){
-  cd ios;
+# iOS Stuff
+function ios(){
+  case $1 in
+    "build")
+      build-ios;
+      ;;
+    "archive")
+      ios-archive;
+      ;;
+    "export")
+      ios-export;
+      ;;
+    *)
+      npx react-native run-ios;
+      ;;
+  esac
+}
 
+function ios-archive(){
+  cd ios;
   xcrun xcodebuild archive \
     -workspace "MyApp.xcworkspace" \
     -scheme "MyApp" \
     -configuration Release \
     -sdk iphoneos \
+    -destination 'generic/platform=iOS' \
     -derivedDataPath ./build/DerivedData \
     -archivePath ./build/MyApp.xcarchive \
     -allowProvisioningUpdates \
     -allowProvisioningDeviceRegistration;
+}
 
+function ios-export(){
+  echo "📦 Exporting iOS...";
   xcrun xcodebuild \
     -exportArchive \
     -exportOptionsPlist ExportOptions.plist \
@@ -46,31 +65,42 @@ function build-ios(){
     -allowProvisioningDeviceRegistration;
 }
 
-function build-android(){
-  cd android;
-  if [[ $1 == "aab" ]]; then
-    echo "Building Bundle AAB...";
-    ./gradlew bundleRelease;
-  else
-    echo "Building APK...";
-    ./gradlew assembleRelease;
-  fi
+function ios-build(){
+  echo "📱 Building iOS...";
+  ios-archive;
+  ios-export;
+}
+
+# General Stuff
+
+function start(){
+  npx react-native start
 }
 
 function lint(){
-  npx eslint src --ext .js,.jsx;
+  echo "🧹 Linting...";
+  npx eslint ./src --ext .js,.jsx,.ts,.tsx;
 }
 
 function test(){
+  echo "🧪 Running tests...";
   jest src;
 }
 
-function postinstall(){
+function env(){
+  echo "🔧 Setting up env variables...";
+  cp -n ./envs/.env.$1.json ./.env.json || true;
+}
+
+function prepare(){
+  echo "🍃 Preparing environment...";
+  echo "🪝 Install git hooks...";
+  npx simple-git-hooks >> /dev/null;
+  env development
   # macOS only
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    npx react-native setup-ios-permissions
-    cd ios && pod install && cd ..;
-  fi
+  # if [[ "$OSTYPE" == "darwin"* ]]; then
+  #   # Install Homebrew
+  # fi
 }
 
 func=$1
