@@ -1,9 +1,16 @@
 import React from 'react';
-import { Heading } from '~/components';
+import {
+  Button, Column, Columns, Heading,
+} from '~/components';
 import { HomeScreenProps } from '~/routes/router.types';
 
-export default function HomeScreen(props: HomeScreenProps) {
+export default function HomeScreen({ navigation }: HomeScreenProps) {
   return (
-    <Heading>Hello</Heading>
+    <Columns vcentered centered>
+      <Column>
+        <Heading>Home</Heading>
+        <Button onPress={() => navigation.navigate('Login')}>Navigate to Login</Button>
+      </Column>
+    </Columns>
   );
 }

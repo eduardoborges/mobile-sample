@@ -26,7 +26,8 @@ const styles = (p: ButtonProps) => StyleSheet.create({
     height: 48,
     justifyContent: 'center',
     alignItems: 'center',
-    ...(p.type === 'primary') && {
+    paddingHorizontal: 20,
+    ...(p.type === 'primary' || p.type === undefined) && { // default
       backgroundColor: '#000',
       color: '#fff',
     },
@@ -38,14 +39,13 @@ const styles = (p: ButtonProps) => StyleSheet.create({
     },
   },
   text: {
-    ...(p.type === 'primary') && {
+    ...(p.type === 'primary' || p.type === undefined) && { // default
       color: '#fff',
     },
 
     ...(p.type === 'secondary') && {
       color: '#000',
     },
-    color: 'inherit',
     fontSize: 16,
     fontWeight: 'bold',
   },
