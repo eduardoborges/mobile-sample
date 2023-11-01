@@ -82,6 +82,11 @@ function lint(){
   npx eslint ./src --ext .js,.jsx,.ts,.tsx;
 }
 
+function types(){
+  echo "🧪 Checking types...";
+  npx tsc --noEmit;
+}
+
 function test(){
   echo "🧪 Running tests...";
   jest src;

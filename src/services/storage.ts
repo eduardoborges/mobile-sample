@@ -1,5 +1,9 @@
 import { MMKVLoader } from 'react-native-mmkv-storage';
 
+export const appStorage = new MMKVLoader()
+  .withEncryption()
+  .initialize();
+
 export const userStorage = new MMKVLoader()
   .withEncryption()
   .withInstanceID('userdata')

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const network = axios.create({
+export const http = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },

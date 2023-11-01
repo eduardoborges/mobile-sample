@@ -1,9 +1,8 @@
 {
-  "name": "shoppbud-mobile",
+  "name": "mobile-sample",
   "version": "1.5.1",
   "engines": {
-    "node": ">=17.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "start": "./scripts.sh start",
@@ -11,6 +10,7 @@
     "ios": "./scripts.sh ios",
     "lint": "./scripts.sh lint",
     "test": "./scripts.sh test",
+    "types": "./scripts.sh types",
     "env": "./scripts.sh env",
     "prepare": "./scripts.sh prepare"
   },

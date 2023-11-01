@@ -1,4 +1,3 @@
-import { type } from 'os';
 import React, { useMemo } from 'react';
 import { DimensionValue, StyleSheet, View } from 'react-native';
 
@@ -20,6 +19,7 @@ type ColumnProps = React.PropsWithChildren<{
   bg?: string;
   m?: number | Array<number>;
   p?: number | Array<number>;
+  mt?: number;
 }>;
 
 export function Columns({ children, ...props }: ColumnsProps) {

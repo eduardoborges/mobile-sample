@@ -20,7 +20,7 @@ export function P({ children, ...props }: ParagraphProps) {
   );
 }
 
-const styles = (p: ParagraphProps) => {
+const styles = (props: ParagraphProps) => {
   const fontSize = {
     s: 14,
     m: 16,
@@ -30,12 +30,12 @@ const styles = (p: ParagraphProps) => {
   };
   return StyleSheet.create({
     text: {
-      fontSize: fontSize[p.size || 'm'],
-      fontWeight: p.weight || 'normal',
+      fontSize: fontSize[props.size || 'm'],
+      fontWeight: props.weight || 'normal',
       flexWrap: 'wrap',
       width: 'auto',
-      color: p.color,
-      textAlign: p.align || 'left',
+      color: props.color,
+      textAlign: props.align || 'left',
     },
   });
 };

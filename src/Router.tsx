@@ -1,79 +1,24 @@
-/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
-import Loader from './screens/loader/loader.page';
-import { RootBottomTab, DiscoverStack, routes } from './routes';
-import { useAuth } from '~/store';
-import BottomTabBar from './BottomTabBar';
+import { RootStackParamList } from './routes/router.types';
 
-// screens
-import DiscoverScreen from './screens/discover/DiscoverScreen';
-import FavoritesScreen from './screens/favorites/FavoritesScreen';
-import OrdersScreen from './screens/orders/OrdersScreen';
-import AccountScreen from './screens/account/AccountScreen';
+import HomeScreen from '~/screens/home/home.screen';
+import LoginScreen from '~/screens/login/login.screen';
+import RegisterScreen from './screens/register/register.screen';
 
-export default function RootRoutes() {
-  const { isLoading, data } = useAuth();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
+export default function MainRouter() {
   return (
     <NavigationContainer>
-      <RootBottomTab.Navigator tabBar={BottomTabBar}>
-        <RootBottomTab.Group>
-          <RootBottomTab.Screen name={routes.DISCOVER_STACK.id} component={DiscoverRouterStack} />
-          <RootBottomTab.Screen name={routes.FAVORITES_STACK.id} component={FavoritesRouterStack} />
-          <RootBottomTab.Screen name={routes.ORDERS_STACK.id} component={OrdersRouterStack} />
-          <RootBottomTab.Screen name={routes.ACCOUNT_STACK.id} component={AccountRouterStack} />
-        </RootBottomTab.Group>
-      </RootBottomTab.Navigator>
+      <RootStack.Navigator>
+        <RootStack.Group screenOptions={{ headerShown: false }}>
+          <RootStack.Screen name="Home" component={HomeScreen} />
+          <RootStack.Screen name="Login" component={LoginScreen} />
+          <RootStack.Screen name="Register" component={RegisterScreen} />
+        </RootStack.Group>
+      </RootStack.Navigator>
     </NavigationContainer>
-  );
-}
-
-function DiscoverRouterStack() {
-  const screenOptions : NativeStackNavigationOptions = {
-    headerShown: false,
-  };
-  return (
-    <DiscoverStack.Navigator screenOptions={screenOptions}>
-      <DiscoverStack.Screen name={routes.DISCOVER.id} component={DiscoverScreen} />
-    </DiscoverStack.Navigator>
-  );
-}
-
-function FavoritesRouterStack() {
-  const screenOptions : NativeStackNavigationOptions = {
-    headerShown: false,
-  };
-  return (
-    <DiscoverStack.Navigator screenOptions={screenOptions}>
-      <DiscoverStack.Screen name={routes.FAVORITES.id} component={FavoritesScreen} />
-    </DiscoverStack.Navigator>
-  );
-}
-
-function OrdersRouterStack() {
-  const screenOptions : NativeStackNavigationOptions = {
-    headerShown: false,
-  };
-  return (
-    <DiscoverStack.Navigator screenOptions={screenOptions}>
-      <DiscoverStack.Screen name={routes.ORDERS.id} component={OrdersScreen} />
-    </DiscoverStack.Navigator>
-  );
-}
-
-function AccountRouterStack() {
-  const screenOptions : NativeStackNavigationOptions = {
-    headerShown: false,
-  };
-  return (
-    <DiscoverStack.Navigator screenOptions={screenOptions}>
-      <DiscoverStack.Screen name={routes.ACCOUNT.id} component={AccountScreen} />
-    </DiscoverStack.Navigator>
   );
 }
