@@ -103,7 +103,11 @@ function ios-build(){
 # General Stuff
 
 function start(){
-  npx react-native start
+  # Clean
+  echo "🧹 Cleaning watchman...";
+  npx watchman watch-del $(pwd) >> /dev/null;
+  echo "🚀 Starting Metro...";
+  npx react-native start;
 }
 
 function lint(){
