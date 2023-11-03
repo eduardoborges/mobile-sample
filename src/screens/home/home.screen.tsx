@@ -6,11 +6,11 @@ import { HomeScreenProps } from '~/routes/router.types';
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
   return (
-    <Flex vcentered centered direction="horizontal" debug>
-      <Flex centered vcentered debug>
+    <Flex vCentered centered vertical debug>
+      <Flex vEnd end debug full>
         <Heading>Home</Heading>
       </Flex>
-      <Flex centered vcentered debug>
+      <Flex centered vCentered debug>
         <Button onPress={() => navigation.navigate('Login')}>Navigate to Login</Button>
       </Flex>
     </Flex>

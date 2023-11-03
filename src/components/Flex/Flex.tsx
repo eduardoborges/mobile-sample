@@ -1,24 +1,50 @@
 import React, { useMemo } from 'react';
-import { DimensionValue, StyleSheet, View } from 'react-native';
+import {
+  DimensionValue, StyleSheet, View, ViewProps,
+} from 'react-native';
 
 type FlexProps = React.PropsWithChildren<{
   debug?: boolean;
   size?: number;
+  full?: boolean;
   gapless?: boolean;
   centered?: boolean;
-  vcentered?: boolean;
+  end?: boolean;
+  start?: boolean;
+  vCentered?: boolean;
   multiline?: boolean;
-  direction?: 'horizontal' | 'vertical';
+  vEnd?: boolean;
+  vStart?: boolean;
+  vertical?: boolean;
+  horizontal?: boolean;
   width?: DimensionValue;
   offset?: number;
   narrow?: boolean;
   bg?: string;
-  m?: number | Array<number>;
+  /**
+   * Description: margin
+   * @example m={10} // margin: 10
+   */
   p?: number | Array<number>;
+  pt?: number;
+  pr?: number;
+  pb?: number;
+  pl?: number;
+  m?: number | Array<number>;
   mt?: number;
+  mr?: number;
+  mb?: number;
+  ml?: number;
+  style?: ViewProps['style'];
 }>;
 
-export function Flex({ children, ...props }: FlexProps) {
+/**
+ *
+ * @param props {FlexProps}
+ * @returns
+ */
+export function Flex(props: FlexProps) {
+  const { children } = props;
   const s = useMemo(() => getStyles(props), [props]);
 
   return (
@@ -30,11 +56,20 @@ export function Flex({ children, ...props }: FlexProps) {
 
 const getStyles = (p: FlexProps) => StyleSheet.create({
   flex: {
+    // defaults
     backgroundColor: p.bg,
     flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+
+    // for debugging
     ...(p.debug && {
       borderWidth: 1,
       borderColor: 'red',
+    }),
+    // overrides
+    ...(p.full && {
+      width: '100%',
     }),
     ...(p.size && {
       flex: p.size,
@@ -49,6 +84,7 @@ const getStyles = (p: FlexProps) => StyleSheet.create({
     ...(p.narrow && {
       flex: 0,
     }),
+    // margins
     ...(p.m && typeof p.m === 'number' && {
       margin: p.m,
     }),
@@ -56,38 +92,65 @@ const getStyles = (p: FlexProps) => StyleSheet.create({
       marginVertical: p.m[0],
       marginHorizontal: p.m[1],
     }),
+    ...(p.m && Array.isArray(p.m) && p.m.length === 3 && {
+      marginTop: p.m[0],
+      marginHorizontal: p.m[1],
+      marginBottom: p.m[2],
+    }),
     ...(p.m && Array.isArray(p.m) && p.m.length === 4 && {
       marginTop: p.m[0],
       marginRight: p.m[1],
       marginBottom: p.m[2],
       marginLeft: p.m[3],
     }),
+    ...(p.mt && {
+      marginTop: p.mt,
+    }),
+    ...(p.mr && {
+      marginRight: p.mr,
+    }),
+    ...(p.mb && {
+      marginBottom: p.mb,
+    }),
+    ...(p.ml && {
+      marginLeft: p.ml,
+    }),
 
+    // paddings
     ...(p.p && typeof p.p === 'number' && {
       padding: p.p,
     }),
-    ...(p.p && Array.isArray(p.p) && p.p.length === 2 && {
-      paddingVertical: p.p[0],
-      paddingHorizontal: p.p[1],
+    // flexbox
+    ...(p.vertical && {
+      flexDirection: 'column',
     }),
-    ...(p.p && Array.isArray(p.p) && p.p.length === 4 && {
-      paddingTop: p.p[0],
-      paddingRight: p.p[1],
-      paddingBottom: p.p[2],
-      paddingLeft: p.p[3],
+    ...(p.horizontal && {
+      flexDirection: 'row',
     }),
-    flexDirection: p.direction === 'vertical' ? 'column' : 'row',
     ...(p.gapless && {
       gap: 0,
     }),
     ...(p.centered && {
       justifyContent: 'center',
     }),
-    ...(p.vcentered && {
+    ...(p.end && {
+      justifyContent: 'flex-end',
+    }),
+    ...(p.start && {
+      justifyContent: 'flex-start',
+    }),
+    ...(p.vCentered && {
       alignItems: 'center',
+    }),
+    ...(p.vEnd && {
+      alignItems: 'flex-end',
+    }),
+    ...(p.vStart && {
+      alignItems: 'flex-start',
     }),
     ...(p.multiline && {
       flexWrap: 'wrap',
     }),
+    ...p.style as object,
   },
 });
