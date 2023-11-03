@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import A from 'react-native-reanimated';
 import { StyleSheet } from 'react-native';
-import { theme } from '~/theme';
+import theme from '~/theme';
 
 export type TitleProps = React.PropsWithChildren<{
   size?: keyof typeof theme.headings;

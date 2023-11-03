@@ -1,18 +1,14 @@
 import React, { useMemo } from 'react';
 import { DimensionValue, StyleSheet, View } from 'react-native';
 
-type ColumnsProps = React.PropsWithChildren<{
+type FlexProps = React.PropsWithChildren<{
   debug?: boolean;
+  size?: number;
   gapless?: boolean;
   centered?: boolean;
   vcentered?: boolean;
   multiline?: boolean;
-  direction?: 'row' | 'column';
-}>;
-
-type ColumnProps = React.PropsWithChildren<{
-  debug?: boolean;
-  size?: number;
+  direction?: 'horizontal' | 'vertical';
   width?: DimensionValue;
   offset?: number;
   narrow?: boolean;
@@ -22,54 +18,20 @@ type ColumnProps = React.PropsWithChildren<{
   mt?: number;
 }>;
 
-export function Columns({ children, ...props }: ColumnsProps) {
-  const s = useMemo(() => getColumnsStyles(props), [props]);
+export function Flex({ children, ...props }: FlexProps) {
+  const s = useMemo(() => getStyles(props), [props]);
 
   return (
-    <View style={s.columns}>
+    <View style={s.flex}>
       {children}
     </View>
   );
 }
 
-export function Column({ children, ...props }:ColumnProps) {
-  const s = useMemo(() => getColumnStyles(props), [props]);
-
-  return (
-    <View style={s.column}>
-      {children}
-    </View>
-  );
-}
-
-const getColumnsStyles = (p: ColumnsProps) => StyleSheet.create({
-  columns: {
-    flex: 1,
-    // TODO: IMPLEMENT GAP IN COLUMNS
-    // gap: 10,
-    flexDirection: p.direction || 'row',
-    ...(p.debug && {
-      borderWidth: 1,
-      borderColor: 'red',
-    }),
-    ...(p.gapless && {
-      gap: 0,
-    }),
-    ...(p.centered && {
-      justifyContent: 'center',
-    }),
-    ...(p.vcentered && {
-      alignItems: 'center',
-    }),
-    ...(p.multiline && {
-      flexWrap: 'wrap',
-    }),
-  },
-});
-
-const getColumnStyles = (p: ColumnProps) => StyleSheet.create({
-  column: {
+const getStyles = (p: FlexProps) => StyleSheet.create({
+  flex: {
     backgroundColor: p.bg,
+    flex: 1,
     ...(p.debug && {
       borderWidth: 1,
       borderColor: 'red',
@@ -113,6 +75,19 @@ const getColumnStyles = (p: ColumnProps) => StyleSheet.create({
       paddingRight: p.p[1],
       paddingBottom: p.p[2],
       paddingLeft: p.p[3],
+    }),
+    flexDirection: p.direction === 'vertical' ? 'column' : 'row',
+    ...(p.gapless && {
+      gap: 0,
+    }),
+    ...(p.centered && {
+      justifyContent: 'center',
+    }),
+    ...(p.vcentered && {
+      alignItems: 'center',
+    }),
+    ...(p.multiline && {
+      flexWrap: 'wrap',
     }),
   },
 });

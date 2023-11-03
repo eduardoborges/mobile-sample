@@ -1,14 +1,6 @@
-import { MMKVLoader } from 'react-native-mmkv-storage';
+import { MMKV } from 'react-native-mmkv';
 
-export const appStorage = new MMKVLoader()
-  .withEncryption()
-  .initialize();
-
-export const userStorage = new MMKVLoader()
-  .withEncryption()
-  .withInstanceID('userdata')
-  .initialize();
-
-export const settingsStorage = new MMKVLoader()
-  .withInstanceID('settings')
-  .initialize();
+export const storage = new MMKV({
+  encryptionKey: 'app',
+  id: 'shoppbud',
+});

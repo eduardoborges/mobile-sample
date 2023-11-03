@@ -89,7 +89,7 @@ function types(){
 
 function test(){
   echo "🧪 Running tests...";
-  jest src;
+  jest src --passWithNoTests;
 }
 
 function env(){
