@@ -5,8 +5,12 @@ import {
 
 type FlexProps = React.PropsWithChildren<{
   debug?: boolean;
+  debugBg?: boolean;
+  debugColor?: string;
+  //
   size?: number;
   full?: boolean;
+  gap?: number;
   gapless?: boolean;
   centered?: boolean;
   end?: boolean;
@@ -65,7 +69,10 @@ const getStyles = (p: FlexProps) => StyleSheet.create({
     // for debugging
     ...(p.debug && {
       borderWidth: 1,
-      borderColor: 'red',
+      borderColor: p.debugColor || 'blue',
+    }),
+    ...(p.debugBg && {
+      backgroundColor: p.debugColor || 'blue',
     }),
     // overrides
     ...(p.full && {
@@ -126,6 +133,9 @@ const getStyles = (p: FlexProps) => StyleSheet.create({
     }),
     ...(p.horizontal && {
       flexDirection: 'row',
+    }),
+    ...(p.gap && {
+      gap: p.gap,
     }),
     ...(p.gapless && {
       gap: 0,
