@@ -11,9 +11,14 @@ Mobile Sample is a repository for a sample app developed in React Native. The ai
 ## Avaliable Scripts
 
 ```sh
+  # Start
+  npm start # for start metro server, you can start android or ios from here
+
   # IOS
   npm run ios
-  npm run ios build # no exports yet
+  npm run ios archive # for archive
+  npm run ios export # for export ipa
+  npm run ios build # for both archive and export ipa
 
   # Android
   npm run android
@@ -21,8 +26,13 @@ Mobile Sample is a repository for a sample app developed in React Native. The ai
   npm run android build aab # for aab
 
   # Common
-  npm run lint
-  npm run test
+  npm run lint # for lint
+  npm run test # for test
+  npm run types # for type check
+
+  # Environtment
+  npm run env staging # for staging
+  npm run env production # for production
 ```
 
 ## Step 1: Start the Metro Server
