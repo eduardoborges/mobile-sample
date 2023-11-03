@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 export type ButtonProps = React.PropsWithChildren<TouchableOpacityProps> & {
-  type?: 'primary' | 'secondary';
+  variation?: 'primary' | 'secondary';
 };
 
 export function Button({ children, ...props }: ButtonProps) {
@@ -27,11 +27,11 @@ const styles = (p: ButtonProps) => StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    ...(p.type === 'primary' || p.type === undefined) && { // default
+    ...(p.variation === 'primary' || p.variation === undefined) && { // default
       backgroundColor: '#000',
       color: '#fff',
     },
-    ...(p.type === 'secondary') && {
+    ...(p.variation === 'secondary') && {
       backgroundColor: '#fff',
       borderColor: '#000',
       borderWidth: 1,
@@ -39,11 +39,11 @@ const styles = (p: ButtonProps) => StyleSheet.create({
     },
   },
   text: {
-    ...(p.type === 'primary' || p.type === undefined) && { // default
+    ...(p.variation === 'primary' || p.variation === undefined) && { // default
       color: '#fff',
     },
 
-    ...(p.type === 'secondary') && {
+    ...(p.variation === 'secondary') && {
       color: '#000',
     },
     fontSize: 16,
