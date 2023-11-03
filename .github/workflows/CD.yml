@@ -64,7 +64,7 @@ jobs:
       run: npm run android build
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: android
         path: android/app/build/outputs/apk/release/app-release.apk
