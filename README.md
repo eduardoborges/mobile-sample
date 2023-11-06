@@ -4,6 +4,13 @@
 
 Mobile Sample is a repository for a sample app developed in React Native. The aim of this project is to provide a starting point for creating mobile applications using the React Native framework.
 
+## Table of content
+- [Mobile Sample](#mobile-sample)
+  * [Getting Started](#getting-started)
+  * [Avaliable Scripts](#avaliable-scripts)
+  + [Now what?](#now-what)
+- [Troubleshooting](#troubleshooting)
+
 ## Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.

@@ -16,7 +16,7 @@ export default function MainRouter() {
 
   return (
     <NavigationContainer>
-      <RootStack.Navigator>
+      <RootStack.Navigator initialRouteName="Login">
         <RootStack.Group screenOptions={screenOptions}>
           <RootStack.Screen name="Home" component={HomeScreen} />
           <RootStack.Screen name="Login" component={LoginScreen} />

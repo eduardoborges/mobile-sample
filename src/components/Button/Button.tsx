@@ -24,6 +24,7 @@ const styles = (p: ButtonProps) => StyleSheet.create({
   container: {
     borderRadius: 6,
     height: 48,
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,

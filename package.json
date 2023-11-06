@@ -29,6 +29,7 @@
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-device-info": "10.11.0",
+    "react-native-flex": "^1.0.2",
     "react-native-gesture-handler": "2.13.4",
     "react-native-mmkv": "2.10.2",
     "react-native-permissions": "3.10.1",

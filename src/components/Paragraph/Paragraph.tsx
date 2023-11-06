@@ -10,8 +10,8 @@ export type ParagraphProps = React.ComponentProps<typeof A.Text> & {
   weight?: TextStyle['fontWeight'];
 };
 
-export function P({ children, ...props }: ParagraphProps) {
-  const s = useMemo(() => styles(props), [props]);
+export function Paragraph({ children, ...props }: ParagraphProps) {
+  const s = useMemo(() => getStyles(props), [props]);
 
   return (
     <A.Text style={s.text} {...props}>
@@ -20,7 +20,7 @@ export function P({ children, ...props }: ParagraphProps) {
   );
 }
 
-const styles = (props: ParagraphProps) => {
+const getStyles = (props: ParagraphProps) => {
   const fontSize = {
     s: 14,
     m: 16,
@@ -36,6 +36,7 @@ const styles = (props: ParagraphProps) => {
       width: 'auto',
       color: props.color,
       textAlign: props.align || 'left',
+      marginBottom: 15,
     },
   });
 };

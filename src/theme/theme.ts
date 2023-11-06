@@ -1,6 +1,7 @@
 import * as colors from './colors';
 
 export * from './constants';
+export * from './sizes';
 
 export default {
   colors,

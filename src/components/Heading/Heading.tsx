@@ -27,6 +27,7 @@ const getStyles = (props: TitleProps) => {
       fontSize: theme.headings[size],
       fontWeight: '700',
       color: props.color || '#333',
+      marginBottom: 15,
     },
   });
 };
