@@ -59,7 +59,7 @@
     "@types/jest": "^29.5.7",
     "@types/metro-config": "0.76.3",
     "@types/node": "20.8.10",
-    "@types/react": "18.2.33",
+    "@types/react": "18.2.38",
     "@types/react-test-renderer": "18.0.5",
     "@typescript-eslint/eslint-plugin": "6.9.1",
     "@typescript-eslint/parser": "6.9.1",
