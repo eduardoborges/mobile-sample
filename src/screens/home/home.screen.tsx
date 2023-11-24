@@ -8,11 +8,11 @@ import Reanimated, {
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
-  withDecay,
-  withSpring,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Flex, Heading, Paragraph } from '~/components';
+import {
+  Flex, Heading, Paragraph, useToast,
+} from '~/components';
 import { HomeScreenProps } from '~/routes/router.types';
 import { useHello } from '~/store';
 import { SCREEN_WIDTH } from '~/theme';
@@ -28,6 +28,8 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
     data: hello,
     isLoading: isLoadingHello,
   } = useHello();
+
+  const toast = useToast();
 
   const insets = useSafeAreaInsets();
 
@@ -88,7 +90,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
     blurAmount: interpolate(
       translationY.value,
       INPUT_RANGE,
-      [0, 10],
+      [5, 25],
       Extrapolate.CLAMP,
     ),
   }));
@@ -99,6 +101,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
         <AnimatedBlurView
           style={[styles.blur, headerStyle]}
           animatedProps={blurViewProps}
+          blurType="dark"
         />
         <Reanimated.Image
           style={[styles.image, imageStyle]}
@@ -119,8 +122,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
         </Reanimated.Text>
       </Reanimated.View>
       <Reanimated.ScrollView
-        snapToInterval={50}
-        scrollEventThrottle={8.3} // 120fps
+        scrollEventThrottle={8} // 120fps
         style={[styles.scroll]}
         onScroll={onScroll}
       >

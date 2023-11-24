@@ -1,12 +1,14 @@
+import { CheckCheck } from 'lucide-react-native';
 import React from 'react';
-import { Flex } from 'react-native-flex';
 import {
-  Button, Input,
+  Button, Input, Flex, useToast,
 } from '~/components';
 import { LoginScreenProps } from '~/routes/router.types';
 
 export default function LoginScreen({ navigation }: LoginScreenProps) {
-  const debugLayout = true;
+  const debugLayout = false;
+
+  const toast = useToast();
 
   return (
     <Flex vCentered vertical p={20} debug={debugLayout}>
@@ -19,7 +21,20 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
           <Input placeholder="Password" secureTextEntry />
         </Flex>
         <Flex vEnd centered full debug={debugLayout}>
-          <Button onPress={() => navigation.navigate('Register')}>Navigate to Login</Button>
+          <Button onPress={() => {
+            toast.add({
+              title: `Title ${Date.now()}`,
+              description: 'Description',
+              action: 'Action',
+              icon: CheckCheck,
+              preset: 'success',
+              onAction: () => {},
+            });
+          }}
+          >
+            Navigate to Login
+
+          </Button>
         </Flex>
       </Flex>
     </Flex>
